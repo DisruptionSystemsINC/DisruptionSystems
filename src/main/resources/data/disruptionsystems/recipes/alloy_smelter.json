@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#1#",
+    "0S0",
+    "#1#"
+  ],
+  "key": {
+    "0": {
+      "item": "disruptionsystems:disruption_core"
+    },
+    "S": {
+      "item": "disruptionsystems:machine_casing"
+    },
+    "1": {
+      "item": "minecraft:nether_bricks"
+    },
+    "#": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "disruptionsystems:alloy_smelter"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "block.disruptionsystems.hydermanium_ore": "Hydermanium Ore",
+  "block.disruptionsystems.lithium_ore": "Lithium Ore",
+  "block.disruptionsystems.hydermanium_block": "Hydermanium Block",
+  "block.disruptionsystems.lithium_block": "Lithium Block",
+  "block.disruptionsystems.alloy_smelter": "Alloy Smelter",
+  "item.disruptionsystems.hydermanium_ingot": "Hydermanium Ingot",
+  "item.disruptionsystems.lithium_ingot": "Lithium Ingot",
+  "item.disruptionsystems.hydranium_ingot": "Hydranium Ingot",
+  "item.disruptionsystems.hydermanium_pickaxe": "Hydermanium Pickaxe",
+  "item.disruptionsystems.matterenergy_sword": "Matterenergy Sword",
+  "item.disruptionsystems.disruption_core": "Disruption Core",
+  "item.disruptionsystems.matterenergy_core": "Matterenergy Core",
+  "item.disrutpionsystems.machine_casing": "Machine Casing",
+  "itemGroup.disruptionsystemstab": "Disruption Systems",
+  "screen.disruptionsystems.alloy_smelter": "Alloy Smelter"
+}

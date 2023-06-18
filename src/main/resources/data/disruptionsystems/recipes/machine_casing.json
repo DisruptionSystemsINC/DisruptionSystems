@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#1#",
+    "1S1",
+    "#1#"
+  ],
+    "key": {
+    "S": {
+      "item": "disruptionsystems:hydermanium_ingot"
+    },
+    "1": {
+      "item": "minecraft:iron_bars"
+    },
+    "#": {
+      "item": "minecraft:iron_block"
+    }
+    },
+    "result": {
+    "item": "disruptionsystems:alloy_smelter"
+  }
+}

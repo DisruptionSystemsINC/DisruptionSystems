@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "0": {
+      "item": "disruptionsystems:hydermanium_ingot"
+    }
+    },
+    "result": {
+      "item": "disruptionsystems:hydermanium_pickaxe"
+    }
+}

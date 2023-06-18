@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0#",
+    "20#",
+    "31#"
+  ],
+  "key": {
+    "0": {
+      "item": "disruptionsystems:disruption_core"
+    },
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "disruptionsystems:matterenergy_core"
+    },
+    "3": {
+      "item": "minecraft:lime_dye"
+    },
+    "#": {
+          "item": "disruptionsystems:hydermanium_ingot"
+        }
+  },
+  "result": {
+    "item": "disruptionsystems:matterenergy_sword"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "disruptionsystems:lithium_ore"
+  },
+  "result": "disruptionsystems:lithium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

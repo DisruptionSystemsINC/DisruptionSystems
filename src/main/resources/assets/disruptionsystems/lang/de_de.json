@@ -1,0 +1,17 @@
+{
+  "block.disruptionsystems.hydermanium_ore": "Hydermaniumerz",
+  "block.disruptionsystems.lithium_ore": "Lithiumerz",
+  "block.disruptionsystems.hydermanium_block": "Hydermanium Block",
+  "block.disruptionsystems.lithium_block": "Lithium Block",
+  "block.disruptionsystems.alloy_smelter": "Legierungsschmelze",
+  "item.disruptionsystems.hydermanium_ingot": "Hydermaniumbarren",
+  "item.disruptionsystems.lithium_ingot": "Lithiumbarren",
+  "item.disruptionsystems.hydranium_ingot": "Hydraniumbarren",
+  "item.disruptionsystems.hydermanium_pickaxe": "Hydermaniumspitzhacke",
+  "item.disruptionsystems.matterenergy_sword": "Matterenergy Schwert",
+  "item.disruptionsystems.disruption_core": "Disruption Kernbauteil",
+  "item.disruptionsystems.matterenergy_core": "Matterenergy Kernbauteil",
+  "item.disrutpionsystems.machine_casing": "Maschienen Gehäuse",
+  "itemGroup.disruptionsystemstab": "Disruption Systems",
+  "screen.disruptionsystems.alloy_smelter": "Legierungsschmelze"
+}
