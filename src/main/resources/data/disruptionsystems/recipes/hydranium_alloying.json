@@ -1,0 +1,14 @@
+{
+  "type":"disruptionsystems:alloying",
+  "ingredients": [
+    {
+      "item": "disruptionsystems:hydermanium_ingot"
+    },
+    {
+      "item": "disruptionsystems:lithium_ingot"
+    }
+  ],
+  "output": {
+    "item": "disruptionsystems:hydranium_ingot"
+  }
+}

@@ -16,7 +16,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jline.utils.InfoCmp;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,7 +25,9 @@ import java.util.Optional;
 import static com.gandhithedergrawr.disruptionsystems.item.ModItems.HYDERMANIUM_INGOT;
 import static com.gandhithedergrawr.disruptionsystems.item.ModItems.LITHIUM_INGOT;
 
-public class AlloySmelterTile extends TileEntity implements ITickableTileEntity {
+public class AlloySmelterTile extends TileEntity implements ITickableTileEntity, Runnable{
+    private boolean isProcessing = false;
+    public static int processingTime;
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -34,6 +35,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity 
     public AlloySmelterTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
+
     public AlloySmelterTile() {
         this(ModTileEntities.ALLOY_SMELTER_TILE.get());
     }
@@ -60,29 +62,22 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity 
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                switch (slot) {
-                    case 0:
-                        return stack.getItem() == HYDERMANIUM_INGOT.get();
-                    case 1:
-                        return stack.getItem() == LITHIUM_INGOT.get();
 
-                    default:
-                        return false;
-                }
+                return true;
             }
 
             @Override
             public int getSlotLimit(int slot) {
-                    return 1;
+                return 64;
             }
 
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if(!isItemValid(slot, stack)) {
+                if (!isItemValid(slot, stack)) {
                     return stack;
                 }
-            return super.insertItem(slot, stack, simulate);
+                return super.insertItem(slot, stack, simulate);
             }
         };
     }
@@ -90,24 +85,26 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
         return super.getCapability(cap, side);
     }
+
     public void IsAlloyableMaterialAvailible() {
         boolean HasHydermaniumInFirstSlot = this.itemHandler.getStackInSlot(0).getCount() > 0
                 && this.itemHandler.getStackInSlot(0).getItem() == HYDERMANIUM_INGOT.get();
         boolean HasLithiumInSecondSlot = this.itemHandler.getStackInSlot(1).getCount() > 0
                 && this.itemHandler.getStackInSlot(1).getItem() == LITHIUM_INGOT.get();
 
-        if(HasHydermaniumInFirstSlot && HasLithiumInSecondSlot) {
+        if (HasHydermaniumInFirstSlot && HasLithiumInSecondSlot) {
             this.itemHandler.getStackInSlot(0).shrink(1);
             this.itemHandler.getStackInSlot(1).shrink(1);
 
-            this.itemHandler.insertItem(3, new ItemStack(ModItems.HYDRANIUM_INGOT.get()), false);
+            this.itemHandler.insertItem(2, new ItemStack(ModItems.HYDRANIUM_INGOT.get()), false);
         }
     }
+
     public void craft(){
         Inventory inv = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -116,13 +113,38 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity 
 
         Optional<AlloySmelterRecipe> recipe = world.getRecipeManager()
                 .getRecipe(ModRecipeTypes.ALLOYING_RECIPE, inv, world);
+
+        recipe.ifPresent(iRecipe -> {
+            {
+                isProcessing = true;
+                ItemStack output = iRecipe.getRecipeOutput();
+                if (processingTime >= 480) {
+                    itemHandler.extractItem(0, 1, false);
+                    itemHandler.extractItem(1, 1, false);
+                    itemHandler.insertItem(2, output, false);
+                    isProcessing = false;
+                    processingTime = 0;
+                    markDirty();
+                }
+            }
+
+        });
     }
+
     @Override
     public void tick() {
-        if (world.isRemote){
-            return;
+        if (world.isRemote) {
+            if (isProcessing) {
+                processingTime++;
+                return;
+            }
 
-            craft();
         }
+        craft();
+    }
+
+    @Override
+    public void run() {
+
     }
 }

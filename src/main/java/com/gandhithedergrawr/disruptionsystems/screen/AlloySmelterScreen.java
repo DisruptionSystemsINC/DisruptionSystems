@@ -11,6 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 import java.time.Year;
 
 import static com.gandhithedergrawr.disruptionsystems.disruptionsystems.MOD_ID;
+import static com.gandhithedergrawr.disruptionsystems.tileentity.AlloySmelterTile.processingTime;
 
 public class AlloySmelterScreen extends ContainerScreen<AlloySmelterContainer> {
 
@@ -35,6 +36,10 @@ public class AlloySmelterScreen extends ContainerScreen<AlloySmelterContainer> {
         int i = this.guiLeft;
         int j = this.guiTop;
         this.blit(matrixStack, i, j, 0, 0, xSize, ySize);
+
+        if(processingTime == 40){
+            this.blit(matrixStack, i + 82, j + 9, 176, 0, 34, 26);
+        }
 
 
 
