@@ -1,0 +1,6 @@
+{
+  "parent": "disruptionsystems:item/hydermanium_stiffened_bow",
+  "textures": {
+    "layer0": "disruptionsystems:item/hydermanium_stiffened_bow_pulling_1"
+  }
+}

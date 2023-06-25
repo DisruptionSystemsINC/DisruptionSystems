@@ -1,10 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.item;
 
 import com.gandhithedergrawr.disruptionsystems.*;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -27,10 +24,13 @@ public class ModItems {
             () -> new Item(new Item.Properties().group(MAIN_GROUP)));
 
     public static final RegistryObject<Item> HYDERMANIUM_PICKAXE = ITEMS.register("hydermanium_pickaxe",
-            () -> new PickaxeItem(ModItemTier.HYDERMANIUM,2, 1f, new Item.Properties().group(MAIN_GROUP)));
+            () -> new PickaxeItem(ModItemTier.HYDERMANIUM,2, 1f, new Item.Properties().group(MAIN_GROUP).maxStackSize(1)));
 
     public static final RegistryObject<Item> MATTERENERGY_SWORD = ITEMS.register("matterenergy_sword",
-            () -> new SwordItem(ModItemTier.HYDERMANIUM,10, 2f, new Item.Properties().group(MAIN_GROUP)));
+            () -> new SwordItem(ModItemTier.HYDERMANIUM,10, 2f, new Item.Properties().group(MAIN_GROUP).maxStackSize(1)));
+
+    public static final RegistryObject<Item> HYDERMANIUM_STIFFENED_BOW = ITEMS.register("hydermanium_stiffened_bow",
+            () -> new BowItem(new Item.Properties().group(MAIN_GROUP).maxStackSize(1).maxDamage(50000)));
 
 
     public static final RegistryObject<Item> DISRUPTION_CORE = ITEMS.register("disruption_core",

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0#",
+    "FS#",
+    " 0#"
+  ],
+  "key": {
+    "0": {
+      "item": "disruptionsystems:hydermanium_ingot"
+    },
+    "S": {
+      "item": "disruptionsystems:disruption_core"
+    },
+    "F": {
+      "item": "disruptionsystems:hydranium_ingot"
+    },
+    "#": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "disruptionsystems:hydermanium_stiffened_bow"
+  }
+}

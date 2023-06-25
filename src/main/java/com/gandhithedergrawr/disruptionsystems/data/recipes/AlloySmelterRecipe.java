@@ -36,7 +36,6 @@ public class AlloySmelterRecipe implements IAlloySmelterRecipe{
             return recipeItems.get(1).test(inv.getStackInSlot(1));
         }
         return false;
-
     }
 
     @Override

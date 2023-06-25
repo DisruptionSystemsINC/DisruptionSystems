@@ -4,6 +4,7 @@ import com.gandhithedergrawr.disruptionsystems.block.ModBlocks;
 import com.gandhithedergrawr.disruptionsystems.container.ModContainers;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.item.ModItems;
+import com.gandhithedergrawr.disruptionsystems.item.util.ModItemModelProperties;
 import com.gandhithedergrawr.disruptionsystems.screen.AlloySmelterScreen;
 import com.gandhithedergrawr.disruptionsystems.tileentity.ModTileEntities;
 import net.minecraft.block.Block;
@@ -68,6 +69,7 @@ public class disruptionsystems {
 
         ScreenManager.registerFactory(ModContainers.ALLOY_SMELTER_CONTAINER.get(),
                 AlloySmelterScreen::new);
+        ModItemModelProperties.makeBow(ModItems.HYDERMANIUM_STIFFENED_BOW.get());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
