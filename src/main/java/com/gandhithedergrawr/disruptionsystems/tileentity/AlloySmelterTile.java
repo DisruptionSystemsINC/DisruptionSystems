@@ -21,6 +21,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.Optional;
+import java.util.concurrent.Executors;
 
 import static com.gandhithedergrawr.disruptionsystems.item.ModItems.HYDERMANIUM_INGOT;
 import static com.gandhithedergrawr.disruptionsystems.item.ModItems.LITHIUM_INGOT;
@@ -118,6 +119,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity,
             {
                 isProcessing = true;
                 ItemStack output = iRecipe.getRecipeOutput();
+                System.out.println(processingTime);
                 if (processingTime >= 480) {
                     itemHandler.extractItem(0, 1, false);
                     itemHandler.extractItem(1, 1, false);
@@ -140,7 +142,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity,
             }
 
         }
-        craft();
+        Executors.newCachedThreadPool().execute(this::craft);
     }
 
     @Override

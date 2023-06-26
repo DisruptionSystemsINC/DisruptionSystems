@@ -1,0 +1,14 @@
+{
+  "type":"disruptionsystems:alloying",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "disruptionsystems:enriched_coal"
+    }
+  ],
+  "output": {
+    "item": "disruptionsystems:steel_ingot"
+  }
+}

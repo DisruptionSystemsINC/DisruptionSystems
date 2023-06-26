@@ -36,6 +36,16 @@ public class ModItems {
     public static final RegistryObject<Item> DISRUPTION_CORE = ITEMS.register("disruption_core",
             () -> new Item(new Item.Properties().group(MAIN_GROUP)));
 
+    public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
+            () -> new Item(new Item.Properties().group(MAIN_GROUP)));
+
+    public static final RegistryObject<Item> ENRICHED_COAL = ITEMS.register("enriched_coal",
+            () -> new Item(new Item.Properties().group(MAIN_GROUP)));
+
+    public static final RegistryObject<Item> HYDERMANIUM_WIRE = ITEMS.register("hydermanium_wire",
+            () -> new Item(new Item.Properties().group(MAIN_GROUP)));
+
+
     public static final RegistryObject<Item> MATTERENERY_CORE = ITEMS.register("matterenergy_core",
             () -> new Item(new Item.Properties().group(MAIN_GROUP)));
 

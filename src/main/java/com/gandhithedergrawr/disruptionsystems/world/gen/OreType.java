@@ -7,8 +7,8 @@ import net.minecraftforge.common.util.Lazy;
 public enum OreType {
 
 
-    HYDERMANIUM(Lazy.of(ModBlocks.HYDERMANIUM_ORE), 3, 7, 17);
-
+    HYDERMANIUM(Lazy.of(ModBlocks.HYDERMANIUM_ORE), 3, 7, 17),
+    LITHIUM(Lazy.of(ModBlocks.LITHIUM_ORE), 12, 2, 30);
 
     private final Lazy<Block> block;
     private final int maxVeinSize;
@@ -46,4 +46,6 @@ public enum OreType {
         }
         return null;
     }
+
+
 }

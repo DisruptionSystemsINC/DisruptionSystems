@@ -10,7 +10,7 @@
       "item": "minecraft:redstone_block"
     },
     "S": {
-      "item": "disruptionsystems:hydranium_ingot"
+      "item": "minecraft:diamond"
     },
     "#": {
       "item": "disruptionsystems:hydermanium_ingot"
