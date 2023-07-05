@@ -2,13 +2,13 @@
   "type":"disruptionsystems:alloying",
   "ingredients": [
     {
-      "item": "minecraft:string"
+      "item": "disruptionsystems:lithium_ingot"
     },
     {
       "item": "disruptionsystems:hydermanium_ingot"
     }
   ],
   "output": {
-    "item": "disruptionsystems:hydermanium_wire"
+    "item": "disruptionsystems:hydranium_ingot"
   }
 }

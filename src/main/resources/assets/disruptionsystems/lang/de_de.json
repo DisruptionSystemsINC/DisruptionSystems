@@ -1,6 +1,7 @@
 {
   "block.disruptionsystems.hydermanium_ore": "Hydermaniumerz",
   "block.disruptionsystems.lithium_ore": "Lithiumerz",
+  "block.disruptionsystems.aluminium_ore": "Aluminiumerz",
   "block.disruptionsystems.hydermanium_block": "Hydermanium Block",
   "block.disruptionsystems.lithium_block": "Lithium Block",
   "block.disruptionsystems.alloy_smelter": "Legierungsschmelze",
@@ -11,8 +12,13 @@
   "item.disruptionsystems.matterenergy_sword": "Matterenergy Schwert",
   "item.disruptionsystems.disruption_core": "Disruption Kernbauteil",
   "item.disruptionsystems.matterenergy_core": "Matterenergy Kernbauteil",
-  "item.disrutpionsystems.machine_casing": "Maschienen Gehäuse",
+  "item.disruptionsystems.machine_casing": "Maschienen Gehäuse",
   "item.disruptionsystems.hydermanium_stiffened_bow": "Hydermanium Verstärkter Bogen",
+  "item.disruptionsystems.hydermanium_wire": "Hydermaniumdraht",
+  "item.disruptionsystems.enriched_coal": "Angereicherte Kohle",
+  "item.disruptionsystems.steel_ingot": "Stahlbarren",
+  "item.disruptionsystems.aluminium_ingot": "Aluminiumbarren",
   "itemGroup.disruptionsystemstab": "Disruption Systems",
-  "screen.disruptionsystems.alloy_smelter": "Legierungsschmelze"
+  "screen.disruptionsystems.alloy_smelter": "Legierungsschmelze",
+  "screen.disruptionsystems.thermite_furnace": "Thermitofen"
 }

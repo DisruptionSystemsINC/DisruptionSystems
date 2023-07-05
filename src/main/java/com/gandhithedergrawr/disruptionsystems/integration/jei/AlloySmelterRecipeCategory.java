@@ -1,5 +1,4 @@
 package com.gandhithedergrawr.disruptionsystems.integration.jei;
-
 import com.gandhithedergrawr.disruptionsystems.block.ModBlocks;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -12,10 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import static com.gandhithedergrawr.disruptionsystems.disruptionsystems.MOD_ID;
-
 public class AlloySmelterRecipeCategory implements IRecipeCategory<AlloySmelterRecipe> {
 
-    public final static ResourceLocation UID = new ResourceLocation(MOD_ID, "aloying");
+    public final static ResourceLocation UID = new ResourceLocation(MOD_ID, "alloying");
     public final static ResourceLocation TEXTURE =
             new ResourceLocation(MOD_ID, "textures/gui/alloy_smelter_gui.png");
     private final IDrawable background;
@@ -28,12 +26,12 @@ public class AlloySmelterRecipeCategory implements IRecipeCategory<AlloySmelterR
 
     @Override
     public ResourceLocation getUid() {
-        return null;
+        return UID;
     }
 
     @Override
     public Class<? extends AlloySmelterRecipe> getRecipeClass() {
-        return null;
+        return AlloySmelterRecipe.class;
     }
 
     @Override
@@ -65,4 +63,3 @@ public class AlloySmelterRecipeCategory implements IRecipeCategory<AlloySmelterR
         recipeLayout.getItemStacks().set(ingredients);
     }
 }
-

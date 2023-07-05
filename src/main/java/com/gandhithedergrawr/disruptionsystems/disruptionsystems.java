@@ -6,6 +6,7 @@ import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.item.ModItems;
 import com.gandhithedergrawr.disruptionsystems.item.util.ModItemModelProperties;
 import com.gandhithedergrawr.disruptionsystems.screen.AlloySmelterScreen;
+import com.gandhithedergrawr.disruptionsystems.screen.ThermiteFurnaceScreen;
 import com.gandhithedergrawr.disruptionsystems.tileentity.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -44,6 +45,7 @@ public class disruptionsystems {
         ModContainers.register(eventBus);
         ModRecipeTypes.register(eventBus);
 
+
         // Register the setup method for modloading
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -69,6 +71,8 @@ public class disruptionsystems {
 
         ScreenManager.registerFactory(ModContainers.ALLOY_SMELTER_CONTAINER.get(),
                 AlloySmelterScreen::new);
+        ScreenManager.registerFactory(ModContainers.THERMITE_FURNACE_CONTAINER.get(),
+                ThermiteFurnaceScreen::new);
         ModItemModelProperties.makeBow(ModItems.HYDERMANIUM_STIFFENED_BOW.get());
     }
 

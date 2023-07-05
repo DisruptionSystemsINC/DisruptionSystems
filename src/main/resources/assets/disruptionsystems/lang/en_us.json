@@ -1,9 +1,11 @@
 {
   "block.disruptionsystems.hydermanium_ore": "Hydermanium Ore",
   "block.disruptionsystems.lithium_ore": "Lithium Ore",
+  "block.disruptionsystems.aluminium_ore": "Aluminium Ore",
   "block.disruptionsystems.hydermanium_block": "Hydermanium Block",
   "block.disruptionsystems.lithium_block": "Lithium Block",
   "block.disruptionsystems.alloy_smelter": "Alloy Smelter",
+  "block.disruptionsystems.thermite_furnace": "Thermite Furnace",
   "item.disruptionsystems.hydermanium_ingot": "Hydermanium Ingot",
   "item.disruptionsystems.lithium_ingot": "Lithium Ingot",
   "item.disruptionsystems.hydranium_ingot": "Hydranium Ingot",
@@ -13,6 +15,11 @@
   "item.disruptionsystems.matterenergy_core": "Matterenergy Core",
   "item.disruptionsystems.machine_casing": "Machine Casing",
   "item.disruptionsystems.hydermanium_stiffened_bow": "Hydermanium Stiffened Bow",
+  "item.disruptionsystems.hydermanium_wire": "Hydermanium Wire",
+  "item.disruptionsystems.enriched_coal": "Enriched Coal",
+  "item.disruptionsystems.steel_ingot": "Steel Ingot",
+  "item.disruptionsystems.aluminium_ingot": "Aluminium Ingot",
   "itemGroup.disruptionsystemstab": "Disruption Systems",
-  "screen.disruptionsystems.alloy_smelter": "Alloy Smelter"
+  "screen.disruptionsystems.alloy_smelter": "Alloy Smelter",
+  "screen.disruptionsystems.thermite_furnace": "Thermite Furnace"
 }

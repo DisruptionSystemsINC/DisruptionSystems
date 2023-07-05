@@ -15,9 +15,13 @@ public class ModTileEntities {
             DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MOD_ID);
 
 
-    public static RegistryObject<TileEntityType<AlloySmelterTile>> ALLOY_SMELTER_TILE =
+   public static RegistryObject<TileEntityType<AlloySmelterTile>> ALLOY_SMELTER_TILE =
             TILE_ENTITIES.register("alloy_smelter_tile", () -> TileEntityType.Builder.create(
                     AlloySmelterTile::new, ModBlocks.ALLOY_SMELTER.get()).build(null));
+
+    public static RegistryObject<TileEntityType<ThermiteFurnaceTile>> THERMITE_FURNACE_TILE =
+            TILE_ENTITIES.register("thermite_furnace_tile", () -> TileEntityType.Builder.create(
+                    ThermiteFurnaceTile::new, ModBlocks.THERMITE_FURNACE.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

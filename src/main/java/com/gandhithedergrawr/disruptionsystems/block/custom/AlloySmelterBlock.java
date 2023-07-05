@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-
 public class AlloySmelterBlock extends Block {
 
     public AlloySmelterBlock(Properties properties) {

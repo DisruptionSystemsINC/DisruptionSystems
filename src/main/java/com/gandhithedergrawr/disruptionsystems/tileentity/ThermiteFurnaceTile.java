@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
-import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
+
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
+import com.gandhithedergrawr.disruptionsystems.data.recipes.ThermiteFurnaceRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -19,19 +20,19 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 
-public class AlloySmelterTile extends TileEntity implements ITickableTileEntity, Runnable{
-    public static boolean isProcessing = false;
-    public static int processingTime;
+public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEntity, Runnable{
+    public static boolean isProcessingThermiteFurnace = false;
+    public static int processingTimeThermiteFurnace;
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
-    public AlloySmelterTile(TileEntityType<?> tileEntityTypeIn) {
+    public ThermiteFurnaceTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
-    public AlloySmelterTile() {
-        this(ModTileEntities.ALLOY_SMELTER_TILE.get());
+    public ThermiteFurnaceTile() {
+        this(ModTileEntities.THERMITE_FURNACE_TILE.get());
     }
 
 
@@ -48,11 +49,9 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity,
     }
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(3) {
+        return new ItemStackHandler(4) {
             @Override
-            protected void onContentsChanged(int slot) {
-                markDirty();
-            }
+            protected void onContentsChanged(int slot) {markDirty();}
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
@@ -84,36 +83,40 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity,
         }
         return super.getCapability(cap, side);
     }
+
+
     public void craft(){
         Inventory inv = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setInventorySlotContents(i, itemHandler.getStackInSlot(i));
         }
 
-        Optional<AlloySmelterRecipe> recipe = world.getRecipeManager()
-                .getRecipe(ModRecipeTypes.ALLOYING_RECIPE, inv, world);
-        isProcessing = false;
+        Optional<ThermiteFurnaceRecipe> recipe = world.getRecipeManager()
+                .getRecipe(ModRecipeTypes.THERMITE_BLASTING_RECIPE, inv, world);
+        isProcessingThermiteFurnace = false;
         recipe.ifPresent(iRecipe -> {
             {
-                isProcessing = true;
+                isProcessingThermiteFurnace = true;
                 ItemStack output = iRecipe.getRecipeOutput();
-                if (processingTime >= 480 ) {
+                if (processingTimeThermiteFurnace >= 800 ) {
                     itemHandler.extractItem(0, 1, false);
                     itemHandler.extractItem(1, 1, false);
-                    itemHandler.insertItem(2, output, false);
-                    isProcessing = false;
-                    processingTime = 0;
+                    itemHandler.extractItem(2, 1, false);
+                    itemHandler.insertItem(3, output, false);
+                    isProcessingThermiteFurnace = false;
+                    processingTimeThermiteFurnace = 0;
                     markDirty();
                 }
             }
+
         });
     }
 
     @Override
     public void tick() {
         if (world.isRemote) {
-            if (isProcessing) {
-                processingTime++;
+            if (isProcessingThermiteFurnace) {
+                processingTimeThermiteFurnace++;
                 return;
             }
 

@@ -8,7 +8,8 @@ public enum OreType {
 
 
     HYDERMANIUM(Lazy.of(ModBlocks.HYDERMANIUM_ORE), 3, 7, 17),
-    LITHIUM(Lazy.of(ModBlocks.LITHIUM_ORE), 12, 2, 30);
+    LITHIUM(Lazy.of(ModBlocks.LITHIUM_ORE), 7, 2, 30),
+    ALUMINIUM(Lazy.of(ModBlocks.ALUMINIUM_ORE), 12, 2, 50);
 
     private final Lazy<Block> block;
     private final int maxVeinSize;

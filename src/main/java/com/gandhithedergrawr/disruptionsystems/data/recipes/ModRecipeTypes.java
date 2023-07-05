@@ -1,6 +1,5 @@
 package com.gandhithedergrawr.disruptionsystems.data.recipes;
 
-import com.gandhithedergrawr.disruptionsystems.disruptionsystems;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.registry.Registry;
@@ -21,10 +20,17 @@ public class ModRecipeTypes {
     public static IRecipeType<AlloySmelterRecipe> ALLOYING_RECIPE
             = new AlloySmelterRecipe.AlloyingRecipeType();
 
+    public static final RegistryObject<ThermiteFurnaceRecipe.Serializer> THERMITE_BLASTING_SERIALIZER
+            = RECIPE_SERIALIZER.register("thermite_blasting", ThermiteFurnaceRecipe.Serializer::new);
+
+    public static IRecipeType<ThermiteFurnaceRecipe> THERMITE_BLASTING_RECIPE
+            = new ThermiteFurnaceRecipe.ThermiteBlastingRecipeType();
+
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
 
         Registry.register(Registry.RECIPE_TYPE, AlloySmelterRecipe.TYPE_ID, ALLOYING_RECIPE);
+        Registry.register(Registry.RECIPE_TYPE, ThermiteFurnaceRecipe.TYPE_ID, THERMITE_BLASTING_RECIPE);
     }
 
 }

@@ -1,0 +1,17 @@
+{
+  "type": "disruptionsystems:thermite_blasting",
+  "ingredients": [
+    {
+      "item": "disruptionsystems:aluminium_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "disruptionsystems:hydermanium_ore"
+    }
+  ],
+  "output": {
+    "item": "disruptionsystems:hydermanium_ingot"
+  }
+}

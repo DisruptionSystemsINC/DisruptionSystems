@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.block;
 
 import com.gandhithedergrawr.disruptionsystems.block.custom.AlloySmelterBlock;
+import com.gandhithedergrawr.disruptionsystems.block.custom.ThermiteFurnaceBlock;
 import com.gandhithedergrawr.disruptionsystems.disruptionsystems;
 import com.gandhithedergrawr.disruptionsystems.item.ModItemGroup;
 import com.gandhithedergrawr.disruptionsystems.item.ModItems;
@@ -30,17 +31,24 @@ public class ModBlocks {
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5, 5)));
 
+    public static final RegistryObject<Block> ALUMINIUM_ORE = registerBlock("aluminium_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(15, 25)));
+
 
     public static final RegistryObject<Block> ALLOY_SMELTER = registerBlock("alloy_smelter",
             () -> new AlloySmelterBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
+    public static final RegistryObject<Block> THERMITE_FURNACE = registerBlock("thermite_furnace",
+            () -> new ThermiteFurnaceBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
+
     public static final RegistryObject<Block> LITHIUM_BLOCK = registerBlock("lithium_block",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
-                    .harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5, 5)));
+                    .harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(2, 1)));
 
-    public static final RegistryObject<Block> hydermanium_block = registerBlock("hydermanium_block",
+    public static final RegistryObject<Block> HYDERMANIUM_BLOCK = registerBlock("hydermanium_block",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
-                    .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5, 5)));
+                    .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(13, 600)));
 
     private static  <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

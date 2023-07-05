@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "disruptionsystems:hydermanium_ore"
-  },
-  "result": "disruptionsystems:hydermanium_ingot",
-  "experience": 1.0,
-  "cookingtime": 200
-}

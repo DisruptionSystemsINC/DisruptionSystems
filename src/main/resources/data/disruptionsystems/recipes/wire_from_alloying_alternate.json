@@ -2,10 +2,10 @@
   "type":"disruptionsystems:alloying",
   "ingredients": [
     {
-      "item": "minecraft:string"
+      "item": "disruptionsystems:hydermanium_ingot"
     },
     {
-      "item": "disruptionsystems:hydermanium_ingot"
+      "item": "minecraft:string"
     }
   ],
   "output": {
