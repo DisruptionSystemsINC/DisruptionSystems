@@ -24,6 +24,7 @@ public class ModTileEntities {
                     ThermiteFurnaceTile::new, ModBlocks.THERMITE_FURNACE.get()).build(null));
 
 
+
     public static void register(IEventBus eventBus) {
         TILE_ENTITIES.register(eventBus);
     }

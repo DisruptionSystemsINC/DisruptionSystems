@@ -85,7 +85,7 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
     }
 
 
-    public void craft(){
+    private void craft(){
         Inventory inv = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setInventorySlotContents(i, itemHandler.getStackInSlot(i));

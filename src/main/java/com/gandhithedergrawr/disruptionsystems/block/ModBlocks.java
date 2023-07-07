@@ -23,6 +23,10 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS, disruptionsystems.MOD_ID);
 
+
+
+    //Ores
+
     public static final RegistryObject<Block> HYDERMANIUM_ORE = registerBlock("hydermanium_ore",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(10, 410)));
@@ -36,12 +40,26 @@ public class ModBlocks {
                     .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(15, 25)));
 
 
+
+
+
+
+
+    //Machines
+
     public static final RegistryObject<Block> ALLOY_SMELTER = registerBlock("alloy_smelter",
             () -> new AlloySmelterBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
     public static final RegistryObject<Block> THERMITE_FURNACE = registerBlock("thermite_furnace",
             () -> new ThermiteFurnaceBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
+
+
+
+
+
+
+    //Material_Blocks
     public static final RegistryObject<Block> LITHIUM_BLOCK = registerBlock("lithium_block",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(2, 1)));
@@ -49,6 +67,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> HYDERMANIUM_BLOCK = registerBlock("hydermanium_block",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(13, 600)));
+
+
+
+
+
+
+
+
+
 
     private static  <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

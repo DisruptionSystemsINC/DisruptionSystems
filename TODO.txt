@@ -1,0 +1,50 @@
+hydermanium_ore
+hydermanium_ingot
+hydermanium_pickaxe
+matterenergy_sword
+mattergy_core
+disruption_core
+speacial furnace for hydermanium (thermite_furnace)
+Lithium Ore Spawn (bigger quantities than hydermanium)
+------------------------
+^ Done!
+------------------------
+v considering
+------------------------
+
+R.E.A.C.T.O.R. building block
+replicator multiblock (capable of teleporting players to Hydrus [maybe after they get there by a rocker or sum idk])
+hydrus dimension (red sand deserted planet, sharp mountains/hills, ravines, higher hydermanium spawn count, new type of stone)
+------------------------
+v ideas
+------------------------
+Hydranium drill-bit
+Hydrogen powered drill
+Electrolyser (or a hydrogen pump)
+Electricity powered drill (less expensive but less efficient than hydrogen drill)
+Hydermanium cell powered drill (most efficient yet most expensive)
+Hydermanium finder
+Hydranium drill-bit (more durability than the hydermanium one)
+Lithium cells
+Hydrogen cells (or "Hydrogen tanks", maybe both just different capacities and uses)
+Portable hydrogen powered generator/recharger (1x1 block, uses hydrogen to create electricity)
+Hydermanium powered rifles (just like in rp uwu)
+Disruption shield module (powered by hydermanium cells, can be upgraded for better efficiency/durability, module for a chestplate)
+------------------------
+v WIP
+------------------------
+Hydermanium stiffened bow 
+.......................
+continuation
+.......................
+Hydermanium plates
+Hydermanium foil
+Hydermanium wires
+PERSONAL PORTABLE MATTER ENERGY STORAGE SYSTEM ACCESS POINT(PPMESS)-(basically a portable ender chest, nobody else than the owner can use it tho, needs little power, compatible with replicators)
+Terminal door locks (uses a 4 digit code, function as buttons and/or levers, menu with the options "button" or "lever")
+Advanced Terminal door lock (doesn't use a code, uses the ID wristband and/or player ID, wristband is for other players than the owner of the lock, function as buttons and/or levers, menu with the options "button" or "lever")
+Shielded door (normal functioning door, higher blast resistace)
+Heavy shielded door (uses hydermanium plates as shielding, needs redstone signal to be opened, high blast resistance)
+ID wristband (used for the Adv. terminal door lock)
+Steel arrow Cartrige (1 steel, 1 gunpowder, 7 arrows) (used with the hydermanium stiffened bow)
+
