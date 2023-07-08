@@ -22,13 +22,21 @@ public class ModContainers {
                BlockPos pos = data.readBlockPos();
                World world = inv.player.getEntityWorld();
               return new AlloySmelterContainer(windowId, world, pos, inv, inv.player);
-          })));//
+          })));
     public static final RegistryObject<ContainerType<ThermiteFurnaceContainer>> THERMITE_FURNACE_CONTAINER
             = CONTAINERS.register("thermite_furnace_container",
             () -> IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 World world = inv.player.getEntityWorld();
                 return new ThermiteFurnaceContainer(windowId, world, pos, inv, inv.player);
+            })));
+
+    public static final RegistryObject<ContainerType<PowderMillContainer>> POWDER_MILL_CONTAINER
+            = CONTAINERS.register("powder_mill_container",
+            () -> IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                World world = inv.player.getEntityWorld();
+                return new PowderMillContainer(windowId, world, pos, inv, inv.player);
             })));
 
     public static void register(IEventBus eventBus) {

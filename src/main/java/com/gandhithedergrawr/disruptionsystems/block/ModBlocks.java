@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.block;
 
 import com.gandhithedergrawr.disruptionsystems.block.custom.AlloySmelterBlock;
+import com.gandhithedergrawr.disruptionsystems.block.custom.PowderMillBlock;
 import com.gandhithedergrawr.disruptionsystems.block.custom.ThermiteFurnaceBlock;
 import com.gandhithedergrawr.disruptionsystems.disruptionsystems;
 import com.gandhithedergrawr.disruptionsystems.item.ModItemGroup;
@@ -53,6 +54,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> THERMITE_FURNACE = registerBlock("thermite_furnace",
             () -> new ThermiteFurnaceBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
+    public static final RegistryObject<Block> POWDER_MILL = registerBlock("powder_mill",
+            () -> new PowderMillBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
 
 

@@ -77,6 +77,12 @@ public class ModItems {
     public static final RegistryObject<Item> HYDERMANIUM_WIRE = ITEMS.register("hydermanium_wire",
             () -> new Item(new Item.Properties().group(MAIN_GROUP)));
 
+    public static final RegistryObject<Item> ALUMINIUM_DUST = ITEMS.register("aluminium_dust",
+            () -> new Item(new Item.Properties().group(MAIN_GROUP)));
+
+    public static final RegistryObject<Item> IRON_DUST = ITEMS.register("iron_dust",
+            () -> new Item(new Item.Properties().group(MAIN_GROUP)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

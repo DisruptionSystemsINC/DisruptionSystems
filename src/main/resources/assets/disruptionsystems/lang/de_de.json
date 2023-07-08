@@ -5,6 +5,7 @@
   "block.disruptionsystems.hydermanium_block": "Hydermanium Block",
   "block.disruptionsystems.lithium_block": "Lithium Block",
   "block.disruptionsystems.alloy_smelter": "Legierungsschmelze",
+  "block.disruptionsystems.powder_mill": "Pulvermühle",
   "item.disruptionsystems.hydermanium_ingot": "Hydermaniumbarren",
   "item.disruptionsystems.lithium_ingot": "Lithiumbarren",
   "item.disruptionsystems.hydranium_ingot": "Hydraniumbarren",
@@ -20,5 +21,6 @@
   "item.disruptionsystems.aluminium_ingot": "Aluminiumbarren",
   "itemGroup.disruptionsystemstab": "Disruption Systems",
   "screen.disruptionsystems.alloy_smelter": "Legierungsschmelze",
-  "screen.disruptionsystems.thermite_furnace": "Thermitofen"
+  "screen.disruptionsystems.thermite_furnace": "Thermitofen",
+  "screen.disruptionsystems.powder_mill": "Pulvermühle"
 }

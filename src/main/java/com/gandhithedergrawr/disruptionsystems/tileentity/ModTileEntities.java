@@ -19,6 +19,12 @@ public class ModTileEntities {
             TILE_ENTITIES.register("alloy_smelter_tile", () -> TileEntityType.Builder.create(
                     AlloySmelterTile::new, ModBlocks.ALLOY_SMELTER.get()).build(null));
 
+
+    public static RegistryObject<TileEntityType<PowderMillTile>> POWDER_MILL_TILE =
+            TILE_ENTITIES.register("powder_mill_tile", () -> TileEntityType.Builder.create(
+                    PowderMillTile::new, ModBlocks.POWDER_MILL.get()).build(null));
+
+
     public static RegistryObject<TileEntityType<ThermiteFurnaceTile>> THERMITE_FURNACE_TILE =
             TILE_ENTITIES.register("thermite_furnace_tile", () -> TileEntityType.Builder.create(
                     ThermiteFurnaceTile::new, ModBlocks.THERMITE_FURNACE.get()).build(null));

@@ -26,11 +26,18 @@ public class ModRecipeTypes {
     public static IRecipeType<ThermiteFurnaceRecipe> THERMITE_BLASTING_RECIPE
             = new ThermiteFurnaceRecipe.ThermiteBlastingRecipeType();
 
+    public static final RegistryObject<PowderMillRecipe.Serializer> CRUSHING_SERIALIZER
+            = RECIPE_SERIALIZER.register("crushing", PowderMillRecipe.Serializer::new);
+
+    public static IRecipeType<PowderMillRecipe> CRUSHING_RECIPE
+            = new PowderMillRecipe.CrushingRecipeType();
+
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
 
         Registry.register(Registry.RECIPE_TYPE, AlloySmelterRecipe.TYPE_ID, ALLOYING_RECIPE);
         Registry.register(Registry.RECIPE_TYPE, ThermiteFurnaceRecipe.TYPE_ID, THERMITE_BLASTING_RECIPE);
+        Registry.register(Registry.RECIPE_TYPE, PowderMillRecipe.TYPE_ID, CRUSHING_RECIPE);
     }
 
 }

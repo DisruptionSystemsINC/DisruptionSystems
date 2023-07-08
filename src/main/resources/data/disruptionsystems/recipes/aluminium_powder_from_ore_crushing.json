@@ -1,0 +1,11 @@
+{
+  "type": "disruptionsystems:crushing",
+  "ingredients": [
+    {
+      "item": "disruptionsystems:aluminium_ore"
+    }
+  ],
+  "output": {
+    "item": "disruptionsystems:aluminium_dust"
+  }
+}

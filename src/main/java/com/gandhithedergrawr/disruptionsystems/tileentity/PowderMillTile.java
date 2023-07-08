@@ -1,8 +1,9 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
-
+import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
-import com.gandhithedergrawr.disruptionsystems.data.recipes.ThermiteFurnaceRecipe;
-import com.gandhithedergrawr.disruptionsystems.tools.ThermiteFurnaceEnergyStorage;
+import com.gandhithedergrawr.disruptionsystems.data.recipes.PowderMillRecipe;
+import com.gandhithedergrawr.disruptionsystems.tools.AlloySmelterEnergyStorage;
+import com.gandhithedergrawr.disruptionsystems.tools.PowderMillEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -21,24 +23,25 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 
-import static com.gandhithedergrawr.disruptionsystems.tileentity.AlloySmelterTile.MAX_POWER;
+public class PowderMillTile extends TileEntity implements ITickableTileEntity{
+    public static boolean isProcessingPowderMill = false;
+    public static int processingTimePowderMill;
+    public static final int MAX_POWER = 160000;
+    public static final int RF_PER_TICK = 20;
 
-public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEntity {
-    public static boolean isProcessingThermiteFurnace = false;
-    public static int processingTimeThermiteFurnace;
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
-    public ThermiteFurnaceTile(TileEntityType<?> tileEntityTypeIn) {
+    public PowderMillTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
-    public ThermiteFurnaceTile() {
-        this(ModTileEntities.THERMITE_FURNACE_TILE.get());
+    public PowderMillTile() {
+        this(ModTileEntities.POWDER_MILL_TILE.get());
     }
 
-    private ThermiteFurnaceEnergyStorage energyStorage = new ThermiteFurnaceEnergyStorage(MAX_POWER, 1000);
+    private PowderMillEnergyStorage energyStorage = new PowderMillEnergyStorage(MAX_POWER, 1000);
 
 
     @Override
@@ -48,6 +51,8 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
         super.read(state, nbt);
     }
 
+
+
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound.put("inv", itemHandler.serializeNBT());
@@ -56,7 +61,7 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
     }
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(4) {
+        return new ItemStackHandler(3) {
             @Override
             protected void onContentsChanged(int slot) {
                 markDirty();
@@ -83,57 +88,57 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
             }
         };
     }
-
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
+        if (cap == CapabilityEnergy.ENERGY) {
+            return LazyOptional.of(() -> energyStorage).cast();
+        }
         return super.getCapability(cap, side);
     }
 
-
-    private void craft() {
+    private void craft(){
         Inventory inv = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setInventorySlotContents(i, itemHandler.getStackInSlot(i));
         }
 
-        Optional<ThermiteFurnaceRecipe> recipe = world.getRecipeManager()
-                .getRecipe(ModRecipeTypes.THERMITE_BLASTING_RECIPE, inv, world);
-        isProcessingThermiteFurnace = false;
+        Optional<PowderMillRecipe> recipe = world.getRecipeManager()
+                .getRecipe(ModRecipeTypes.CRUSHING_RECIPE, inv, world);
+        isProcessingPowderMill = false;
         recipe.ifPresent(iRecipe -> {
             {
-                isProcessingThermiteFurnace = true;
+                isProcessingPowderMill = true;
                 ItemStack output = iRecipe.getRecipeOutput();
-                if (processingTimeThermiteFurnace >= 400) {
+                if (processingTimePowderMill >= 100 ) {
                     itemHandler.extractItem(0, 1, false);
-                    itemHandler.extractItem(1, 1, false);
-                    itemHandler.extractItem(2, 1, false);
-                    itemHandler.insertItem(3, output, false);
-                    isProcessingThermiteFurnace = false;
-                    processingTimeThermiteFurnace = 0;
+                    itemHandler.insertItem(1, output, false);
+                    isProcessingPowderMill = false;
+                    processingTimePowderMill = 0;
                     markDirty();
                 }
             }
-
         });
     }
 
     @Override
     public void tick() {
         if (world.isRemote) {
-            if (isProcessingThermiteFurnace) {
-                if (energyStorage.getEnergyStored() < 50) {
-                    return;
-                } else {
-                    energyStorage.consumePower(20);
-                    processingTimeThermiteFurnace++;
-                }
-
-            }
-            Executors.newCachedThreadPool().execute(this::craft);
         }
+        if(isProcessingPowderMill) {
+            if (energyStorage.getEnergyStored() < RF_PER_TICK) {
+                return;
+            }
+            else {
+                energyStorage.consumePower(20);
+                processingTimePowderMill++;
+            }
+
+
+        }
+        Executors.newCachedThreadPool().execute(this::craft);
     }
 }

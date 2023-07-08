@@ -6,8 +6,10 @@ import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.item.ModItems;
 import com.gandhithedergrawr.disruptionsystems.item.util.ModItemModelProperties;
 import com.gandhithedergrawr.disruptionsystems.screen.AlloySmelterScreen;
+import com.gandhithedergrawr.disruptionsystems.screen.PowderMillScreen;
 import com.gandhithedergrawr.disruptionsystems.screen.ThermiteFurnaceScreen;
 import com.gandhithedergrawr.disruptionsystems.tileentity.ModTileEntities;
+import com.gandhithedergrawr.disruptionsystems.tileentity.PowderMillTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
@@ -73,6 +75,8 @@ public class disruptionsystems {
                 AlloySmelterScreen::new);
         ScreenManager.registerFactory(ModContainers.THERMITE_FURNACE_CONTAINER.get(),
                 ThermiteFurnaceScreen::new);
+        ScreenManager.registerFactory(ModContainers.POWDER_MILL_CONTAINER.get(),
+                PowderMillScreen::new);
         ModItemModelProperties.makeBow(ModItems.HYDERMANIUM_STIFFENED_BOW.get());
     }
 

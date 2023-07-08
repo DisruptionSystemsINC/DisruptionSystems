@@ -45,7 +45,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
         itemHandler.deserializeNBT(nbt.getCompound("inv"));
-        energyStorage.setEnergy(nbt.getInt("energy"));
+        energyStorage.setEnergy(nbt.getByte("energy"));
         super.read(state, nbt);
     }
 
@@ -111,7 +111,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
             {
                 isProcessing = true;
                 ItemStack output = iRecipe.getRecipeOutput();
-                if (processingTime >= 480 ) {
+                if (processingTime >= 150 ) {
                     itemHandler.extractItem(0, 1, false);
                     itemHandler.extractItem(1, 1, false);
                     itemHandler.insertItem(2, output, false);
@@ -126,17 +126,18 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
     @Override
     public void tick() {
         if (world.isRemote) {
-            if (energyStorage.getEnergyStored() < RF_PER_TICK) {
-                System.out.println("Smaller BITCH");
-                return;
             }
-            else if(isProcessing) {
-                energyStorage.consumePower(RF_PER_TICK);
-                processingTime++;
-                return;
-            }
+            if(isProcessing) {
+                if (energyStorage.getEnergyStored() < RF_PER_TICK) {
+                    return;
+                }
+                else {
+                    energyStorage.consumePower(20);
+                    processingTime++;
+                }
 
-        }
+
+            }
         Executors.newCachedThreadPool().execute(this::craft);
     }
 }

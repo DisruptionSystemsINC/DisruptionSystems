@@ -105,6 +105,10 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { // TOP
+        name 'tterrag maven'
+        url "https://maven.tterrag.com/"
+    }
 }
 
 dependencies {

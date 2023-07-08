@@ -6,6 +6,7 @@
   "block.disruptionsystems.lithium_block": "Lithium Block",
   "block.disruptionsystems.alloy_smelter": "Alloy Smelter",
   "block.disruptionsystems.thermite_furnace": "Thermite Furnace",
+  "block.disruptionsystems.powder_mill": "Powder Mill",
   "item.disruptionsystems.hydermanium_ingot": "Hydermanium Ingot",
   "item.disruptionsystems.lithium_ingot": "Lithium Ingot",
   "item.disruptionsystems.hydranium_ingot": "Hydranium Ingot",
@@ -21,5 +22,6 @@
   "item.disruptionsystems.aluminium_ingot": "Aluminium Ingot",
   "itemGroup.disruptionsystemstab": "Disruption Systems",
   "screen.disruptionsystems.alloy_smelter": "Alloy Smelter",
-  "screen.disruptionsystems.thermite_furnace": "Thermite Furnace"
+  "screen.disruptionsystems.thermite_furnace": "Thermite Furnace",
+  "screen.disruptionsystems.powder_mill": "Powder Mill"
 }
