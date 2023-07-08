@@ -39,6 +39,15 @@ public class ModContainers {
                 return new PowderMillContainer(windowId, world, pos, inv, inv.player);
             })));
 
+
+    public static final RegistryObject<ContainerType<MatterEnergyNetworkInputNodeContainer>> MATTER_ENERGY_NETWORK_INPUT_NODE_CONTAINER
+            = CONTAINERS.register("matter_energy_network_input_node_container",
+            () -> IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                World world = inv.player.getEntityWorld();
+                return new MatterEnergyNetworkInputNodeContainer(windowId, world, pos, inv, inv.player);
+            })));
+
     public static void register(IEventBus eventBus) {
         CONTAINERS.register(eventBus);
     }

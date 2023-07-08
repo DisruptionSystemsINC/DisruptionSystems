@@ -1,8 +1,6 @@
 package com.gandhithedergrawr.disruptionsystems.block;
 
-import com.gandhithedergrawr.disruptionsystems.block.custom.AlloySmelterBlock;
-import com.gandhithedergrawr.disruptionsystems.block.custom.PowderMillBlock;
-import com.gandhithedergrawr.disruptionsystems.block.custom.ThermiteFurnaceBlock;
+import com.gandhithedergrawr.disruptionsystems.block.custom.*;
 import com.gandhithedergrawr.disruptionsystems.disruptionsystems;
 import com.gandhithedergrawr.disruptionsystems.item.ModItemGroup;
 import com.gandhithedergrawr.disruptionsystems.item.ModItems;
@@ -57,6 +55,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> POWDER_MILL = registerBlock("powder_mill",
             () -> new PowderMillBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
 
+    public static final RegistryObject<Block> MATTER_ENERGY_NETWORK_INPUT_NODE = registerBlock("matter_energy_network_input_node",
+            () -> new MatterEnergyNetworkInputNodeBlock(AbstractBlock.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool()));
+
 
 
 
@@ -70,8 +71,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> HYDERMANIUM_BLOCK = registerBlock("hydermanium_block",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
                     .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(13, 600)));
-
-
 
 
 

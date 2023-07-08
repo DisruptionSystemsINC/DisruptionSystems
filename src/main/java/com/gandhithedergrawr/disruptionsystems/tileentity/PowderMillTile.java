@@ -1,8 +1,6 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
-import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.PowderMillRecipe;
-import com.gandhithedergrawr.disruptionsystems.tools.AlloySmelterEnergyStorage;
 import com.gandhithedergrawr.disruptionsystems.tools.PowderMillEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;

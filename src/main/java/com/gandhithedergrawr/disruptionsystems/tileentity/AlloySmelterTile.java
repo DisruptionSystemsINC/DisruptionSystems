@@ -1,7 +1,8 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
-import com.gandhithedergrawr.disruptionsystems.tools.AlloySmelterEnergyStorage;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterEnergyStorageManager;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyCapability;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -25,7 +25,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
     public static boolean isProcessing = false;
     public static int processingTime;
     public static final int MAX_POWER = 160000;
-    public static final int RF_PER_TICK = 20;
+    public static final int MEDIS_PER_TICK = 5;
 
 
     private final ItemStackHandler itemHandler = createHandler();
@@ -39,13 +39,13 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
         this(ModTileEntities.ALLOY_SMELTER_TILE.get());
     }
 
-    private AlloySmelterEnergyStorage energyStorage = new AlloySmelterEnergyStorage(MAX_POWER, 1000);
+    private MatterEnergyStorageManager energyStorage = new MatterEnergyStorageManager(MAX_POWER, 1000);
 
 
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
         itemHandler.deserializeNBT(nbt.getCompound("inv"));
-        energyStorage.setEnergy(nbt.getByte("energy"));
+        energyStorage.setEnergy(nbt.getByte("matter_energy"));
         super.read(state, nbt);
     }
 
@@ -54,7 +54,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound.put("inv", itemHandler.serializeNBT());
-        compound.putInt("energy", energyStorage.getEnergyStored());
+        compound.putInt("matter_energy", energyStorage.getEnergyStored());
         return super.write(compound);
     }
 
@@ -92,7 +92,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == MatterEnergyCapability.MATTER_ENERGY) {
             return LazyOptional.of(() -> energyStorage).cast();
         }
         return super.getCapability(cap, side);
@@ -128,7 +128,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
         if (world.isRemote) {
             }
             if(isProcessing) {
-                if (energyStorage.getEnergyStored() < RF_PER_TICK) {
+                if (energyStorage.getEnergyStored() < MEDIS_PER_TICK) {
                     return;
                 }
                 else {

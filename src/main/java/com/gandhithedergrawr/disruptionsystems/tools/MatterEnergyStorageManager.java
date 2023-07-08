@@ -1,14 +1,14 @@
 package com.gandhithedergrawr.disruptionsystems.tools;
 
-import net.minecraftforge.energy.EnergyStorage;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyHandler;
 
-public class ThermiteFurnaceEnergyStorage extends EnergyStorage {
-    public ThermiteFurnaceEnergyStorage(int capacity, int maxReceive) {
+public class MatterEnergyStorageManager extends MatterEnergyHandler {
+    public MatterEnergyStorageManager(int capacity, int maxReceive) {
         super(capacity, maxReceive, 0);
     }
 
     public void setEnergy(int energy) {
-        this.energy = energy;
+        this.energy = energy/4;
     }
 
     public void consumePower (int energy) {

@@ -2,8 +2,8 @@ package com.gandhithedergrawr.disruptionsystems.tools;
 
 import net.minecraftforge.energy.EnergyStorage;
 
-public class ThermiteFurnaceEnergyStorage extends EnergyStorage {
-    public ThermiteFurnaceEnergyStorage(int capacity, int maxReceive) {
+public class EnergyStorageManager extends EnergyStorage {
+    public EnergyStorageManager(int capacity, int maxReceive) {
         super(capacity, maxReceive, 0);
     }
 
@@ -13,11 +13,5 @@ public class ThermiteFurnaceEnergyStorage extends EnergyStorage {
 
     public void consumePower (int energy) {
         this.energy -= energy;
-    }
-
-
-    @Override
-    public int getEnergyStored() {
-        return energy;
     }
 }

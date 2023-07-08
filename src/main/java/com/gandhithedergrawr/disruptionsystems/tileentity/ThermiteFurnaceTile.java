@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -21,11 +22,11 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 
-import static com.gandhithedergrawr.disruptionsystems.tileentity.AlloySmelterTile.MAX_POWER;
-
 public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEntity {
     public static boolean isProcessingThermiteFurnace = false;
     public static int processingTimeThermiteFurnace;
+    public static final int MAX_POWER = 160000;
+    public static final int RF_PER_TICK = 20;
 
     private final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -90,6 +91,9 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
+        if (cap == CapabilityEnergy.ENERGY) {
+            return LazyOptional.of(() -> energyStorage).cast();
+        }
         return super.getCapability(cap, side);
     }
 
@@ -125,10 +129,10 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
     public void tick() {
         if (world.isRemote) {
             if (isProcessingThermiteFurnace) {
-                if (energyStorage.getEnergyStored() < 50) {
+                if (energyStorage.getEnergyStored() < RF_PER_TICK) {
                     return;
                 } else {
-                    energyStorage.consumePower(20);
+                    energyStorage.consumePower(RF_PER_TICK);
                     processingTimeThermiteFurnace++;
                 }
 

@@ -29,6 +29,11 @@ public class ModTileEntities {
             TILE_ENTITIES.register("thermite_furnace_tile", () -> TileEntityType.Builder.create(
                     ThermiteFurnaceTile::new, ModBlocks.THERMITE_FURNACE.get()).build(null));
 
+    public static RegistryObject<TileEntityType<MatterEnergyNetworkInputNodeTile>> MATTER_ENERGY_NETWORK_INPUT_NODE_TILE =
+            TILE_ENTITIES.register("matter_energy_network_node_input_tile", () -> TileEntityType.Builder.create(
+                    MatterEnergyNetworkInputNodeTile::new, ModBlocks.MATTER_ENERGY_NETWORK_INPUT_NODE.get()).build(null));
+
+
 
 
     public static void register(IEventBus eventBus) {
