@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
 import com.gandhithedergrawr.disruptionsystems.tools.EnergyStorageManager;
 import com.gandhithedergrawr.disruptionsystems.tools.MatterEnergyStorageManager;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.IMatterEnergyHandler;
 import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyCapability;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -74,14 +75,16 @@ public class MatterEnergyNetworkInputNodeTile extends TileEntity implements ITic
 
     @Override
     public void tick() {
-        if (world.isRemote){
             if (matterEnergyStorage.getEnergyStored() < MAX_MATTERENERGY_STORAGE){
                 if (energyStorage.getEnergyStored() > RF_PER_TICK){
                     energyStorage.consumePower(RF_PER_TICK);
                     matterEnergyStorage.receiveEnergy(energyStorage.getEnergyStored()/4, false);
                     System.out.println(matterEnergyStorage.getEnergyStored());
+                    matterEnergyStorage.extractEnergy(100, false);
                 }
-            }
         }
+    }
+    public IMatterEnergyHandler getMatterEnergyStorage() {
+        return matterEnergyStorage;
     }
 }

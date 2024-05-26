@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.PowderMillRecipe;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyCapability;
 import com.gandhithedergrawr.disruptionsystems.tools.PowderMillEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
@@ -13,6 +14,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -21,7 +23,9 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 
-public class PowderMillTile extends TileEntity implements ITickableTileEntity{
+import static com.gandhithedergrawr.disruptionsystems.tileentity.Helper.inputNodeHasPower;
+
+public class PowderMillTile extends TileEntity implements ITickableTileEntity {
     public static boolean isProcessingPowderMill = false;
     public static int processingTimePowderMill;
     public static final int MAX_POWER = 160000;
@@ -48,7 +52,6 @@ public class PowderMillTile extends TileEntity implements ITickableTileEntity{
         energyStorage.setEnergy(nbt.getByte("energy"));
         super.read(state, nbt);
     }
-
 
 
     @Override
@@ -86,19 +89,20 @@ public class PowderMillTile extends TileEntity implements ITickableTileEntity{
             }
         };
     }
+
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == MatterEnergyCapability.MATTER_ENERGY) {
             return LazyOptional.of(() -> energyStorage).cast();
         }
         return super.getCapability(cap, side);
     }
 
-    private void craft(){
+    private void craft() {
         Inventory inv = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setInventorySlotContents(i, itemHandler.getStackInSlot(i));
@@ -111,7 +115,7 @@ public class PowderMillTile extends TileEntity implements ITickableTileEntity{
             {
                 isProcessingPowderMill = true;
                 ItemStack output = iRecipe.getRecipeOutput();
-                if (processingTimePowderMill >= 100 ) {
+                if (processingTimePowderMill >= 100) {
                     itemHandler.extractItem(0, 1, false);
                     itemHandler.insertItem(1, output, false);
                     isProcessingPowderMill = false;
@@ -124,19 +128,13 @@ public class PowderMillTile extends TileEntity implements ITickableTileEntity{
 
     @Override
     public void tick() {
-        if (world.isRemote) {
-        }
-        if(isProcessingPowderMill) {
-            if (energyStorage.getEnergyStored() < RF_PER_TICK) {
-                return;
-            }
-            else {
-                energyStorage.consumePower(20);
+        if (Helper.adjacentToMatterEnergyNetworkInputNode(world, pos)) {
+            MatterEnergyNetworkInputNodeTile tile = Helper.getMatterEnergyNetworkInputNode(world, pos);
+            if (inputNodeHasPower(Helper.getMatterEnergyNetworkInputNode(world, pos), RF_PER_TICK)) {
+                tile.getMatterEnergyStorage().extractEnergy(10, false);
                 processingTimePowderMill++;
+                Executors.newCachedThreadPool().execute(this::craft);
             }
-
-
         }
-        Executors.newCachedThreadPool().execute(this::craft);
     }
 }

@@ -33,7 +33,7 @@ public class PowderMillRecipe implements IPowderMillRecipe{
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         if (recipeItems.get(0).test(inv.getStackInSlot(0))) {
-            return recipeItems.get(1).test(inv.getStackInSlot(1));
+            return recipeItems.get(0).test(inv.getStackInSlot(0));
         }
         return false;
     }

@@ -8,16 +8,10 @@ public class MatterEnergyStorageManager extends MatterEnergyHandler {
     }
 
     public void setEnergy(int energy) {
-        this.energy = energy/4;
+        this.energy = energy / 4;
     }
 
-    public void consumePower (int energy) {
+    public void consumePower(int energy) {
         this.energy -= energy;
-    }
-
-
-    @Override
-    public int getEnergyStored() {
-        return energy;
     }
 }

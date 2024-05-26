@@ -1,6 +1,7 @@
 package com.gandhithedergrawr.disruptionsystems.tileentity;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.AlloySmelterRecipe;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
+import com.gandhithedergrawr.disruptionsystems.tools.AlloySmelterEnergyStorage;
 import com.gandhithedergrawr.disruptionsystems.tools.MatterEnergyStorageManager;
 import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyCapability;
 import net.minecraft.block.BlockState;
@@ -21,6 +22,8 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 
+import static com.gandhithedergrawr.disruptionsystems.tileentity.Helper.inputNodeHasPower;
+
 public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
     public static boolean isProcessing = false;
     public static int processingTime;
@@ -39,7 +42,7 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
         this(ModTileEntities.ALLOY_SMELTER_TILE.get());
     }
 
-    private MatterEnergyStorageManager energyStorage = new MatterEnergyStorageManager(MAX_POWER, 1000);
+    private AlloySmelterEnergyStorage energyStorage = new AlloySmelterEnergyStorage(MAX_POWER, 1000);
 
 
     @Override
@@ -106,16 +109,13 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
 
         Optional<AlloySmelterRecipe> recipe = world.getRecipeManager()
                 .getRecipe(ModRecipeTypes.ALLOYING_RECIPE, inv, world);
-        isProcessing = false;
         recipe.ifPresent(iRecipe -> {
             {
-                isProcessing = true;
                 ItemStack output = iRecipe.getRecipeOutput();
                 if (processingTime >= 150 ) {
                     itemHandler.extractItem(0, 1, false);
                     itemHandler.extractItem(1, 1, false);
                     itemHandler.insertItem(2, output, false);
-                    isProcessing = false;
                     processingTime = 0;
                     markDirty();
                 }
@@ -125,19 +125,13 @@ public class AlloySmelterTile extends TileEntity implements ITickableTileEntity{
 
     @Override
     public void tick() {
-        if (world.isRemote) {
-            }
-            if(isProcessing) {
-                if (energyStorage.getEnergyStored() < MEDIS_PER_TICK) {
-                    return;
-                }
-                else {
+        if (Helper.adjacentToMatterEnergyNetworkInputNode(world, pos)) {
+            if (inputNodeHasPower(Helper.getMatterEnergyNetworkInputNode(world, pos), MEDIS_PER_TICK))
+                if (energyStorage.getEnergyStored() > MEDIS_PER_TICK) {
                     energyStorage.consumePower(20);
                     processingTime++;
+                    Executors.newCachedThreadPool().execute(this::craft);
                 }
-
-
-            }
-        Executors.newCachedThreadPool().execute(this::craft);
+        }
     }
 }

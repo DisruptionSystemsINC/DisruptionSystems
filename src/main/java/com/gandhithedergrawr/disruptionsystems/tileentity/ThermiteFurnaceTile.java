@@ -2,6 +2,7 @@ package com.gandhithedergrawr.disruptionsystems.tileentity;
 
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ModRecipeTypes;
 import com.gandhithedergrawr.disruptionsystems.data.recipes.ThermiteFurnaceRecipe;
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyCapability;
 import com.gandhithedergrawr.disruptionsystems.tools.ThermiteFurnaceEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
@@ -21,6 +22,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.Executors;
+
+import static com.gandhithedergrawr.disruptionsystems.tileentity.Helper.inputNodeHasPower;
 
 public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEntity {
     public static boolean isProcessingThermiteFurnace = false;
@@ -91,7 +94,7 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == MatterEnergyCapability.MATTER_ENERGY) {
             return LazyOptional.of(() -> energyStorage).cast();
         }
         return super.getCapability(cap, side);
@@ -127,17 +130,13 @@ public class ThermiteFurnaceTile extends TileEntity implements ITickableTileEnti
 
     @Override
     public void tick() {
-        if (world.isRemote) {
-            if (isProcessingThermiteFurnace) {
-                if (energyStorage.getEnergyStored() < RF_PER_TICK) {
-                    return;
-                } else {
-                    energyStorage.consumePower(RF_PER_TICK);
-                    processingTimeThermiteFurnace++;
-                }
-
+        if (Helper.adjacentToMatterEnergyNetworkInputNode(world, pos)) {
+            MatterEnergyNetworkInputNodeTile tile = Helper.getMatterEnergyNetworkInputNode(world, pos);
+            if (inputNodeHasPower(Helper.getMatterEnergyNetworkInputNode(world, pos), RF_PER_TICK)) {
+                tile.getMatterEnergyStorage().extractEnergy(10, false);
+                processingTimeThermiteFurnace++;
+                Executors.newCachedThreadPool().execute(this::craft);
             }
-            Executors.newCachedThreadPool().execute(this::craft);
         }
     }
 }

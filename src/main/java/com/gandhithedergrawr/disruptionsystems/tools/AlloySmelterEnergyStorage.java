@@ -1,8 +1,9 @@
 package com.gandhithedergrawr.disruptionsystems.tools;
 
+import com.gandhithedergrawr.disruptionsystems.tools.MatterenergyImplementation.MatterEnergyHandler;
 import net.minecraftforge.energy.EnergyStorage;
 
-public class AlloySmelterEnergyStorage extends EnergyStorage {
+public class AlloySmelterEnergyStorage extends MatterEnergyHandler {
     public AlloySmelterEnergyStorage(int capacity, int maxReceive) {
         super(capacity, maxReceive, 0);
     }
